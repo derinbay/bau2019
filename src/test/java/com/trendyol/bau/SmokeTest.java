@@ -108,16 +108,31 @@ public class SmokeTest {
     }
 
     @Test
-    public void shouldSearchAndAddToCart() {
+    public void shouldSearchAndAddToCart() throws InterruptedException {
+        String keyword = "Samsung";
         HomePage homePage = new HomePage(webDriver);
-        SearchResultPage resultPage = homePage.search("Samsung");
+        SearchResultPage resultPage = homePage.search(keyword);
+        Thread.sleep(3000);
 
-        assertEquals(resultPage.getResultText(), "Samsung");
+        assertEquals(resultPage.getResultText(), keyword);
 
         List<WebElement> products = resultPage.getProducts();
         ProductDetailPage detailPage = resultPage.getFirstProduct(products);
+        Thread.sleep(3000);
+        detailPage.addToCart();
+        WebElement successPopup = detailPage.getSuccessPopup();
+        assertTrue(successPopup.isDisplayed());
+    }
 
-
+    @Test
+    public void test() {
+        /**
+         * 1- register
+         * 2- go to my account page
+         * 3- go to addresses page
+         * 4- add an address
+         *
+         * */
     }
 }
 
