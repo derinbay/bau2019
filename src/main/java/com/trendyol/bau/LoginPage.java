@@ -9,15 +9,15 @@ import org.openqa.selenium.WebElement;
  */
 public class LoginPage {
 
-    WebDriver webDriver;
+    WebDriver driver;
 
-    public LoginPage(WebDriver webDriver) {
-        this.webDriver = webDriver;
+    public LoginPage(WebDriver driver) {
+        this.driver = driver;
     }
 
-    WebElement emailTextBox = webDriver.findElement(By.id("email"));
-    WebElement passwordTextBox = webDriver.findElement(By.id("password"));
-    WebElement loginButton = webDriver.findElement(By.id("loginButton"));
+    WebElement emailTextBox = driver.findElement(By.id("email"));
+    WebElement passwordTextBox = driver.findElement(By.id("password"));
+    WebElement loginButton = driver.findElement(By.id("loginButton"));
 
     public void login() {
         emailTextBox.sendKeys("test2019@bau.com");

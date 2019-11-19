@@ -125,7 +125,7 @@ public class SmokeTest {
     }
 
     @Test
-    public void test() {
+    public void registerAndAddAnAddress() throws InterruptedException {
         /**
          * 1- register
          * 2- go to my account page
@@ -133,6 +133,18 @@ public class SmokeTest {
          * 4- add an address
          *
          * */
+        HomePage homePage = new HomePage(webDriver);
+        RegisterPage registerPage = homePage.goToRegister();
+
+        homePage = registerPage.register();
+        MyAccountPage myAccountPage = homePage.goToMyAccountPage();
+        MyAddressesPage myAddressesPage = myAccountPage.goToMyAddressesPage();
+
+        AddAddressPage addAddressPage = myAddressesPage.goToAddAddressPage();
+        addAddressPage.addAddress();
+
+        // add assertion
+        // refactor for duplication
     }
 }
 
