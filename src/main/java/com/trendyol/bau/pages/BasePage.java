@@ -19,7 +19,6 @@ public class BasePage {
 
     WebDriver driver;
     public String url;
-    WebDriverWait wait = new WebDriverWait(driver, 15);
 
     public boolean isElementVisible(By by) {
         try {
@@ -39,23 +38,23 @@ public class BasePage {
     }
 
     public void typeTo(By by, String text) {
-        wait.until(visibilityOfElementLocated(by)).sendKeys(text);
+        new WebDriverWait(driver, 15).until(visibilityOfElementLocated(by)).sendKeys(text);
     }
 
     public void clickTo(By by) {
-        wait.until(elementToBeClickable(by)).click();
+        new WebDriverWait(driver, 15).until(elementToBeClickable(by)).click();
     }
 
     public void clickTo(WebElement element) {
-        wait.until(elementToBeClickable(element)).click();
+        new WebDriverWait(driver, 15).until(elementToBeClickable(element)).click();
     }
 
     public List<WebElement> findElements(By by) {
-        return wait.until(visibilityOfAllElementsLocatedBy(by));
+        return new WebDriverWait(driver, 15).until(visibilityOfAllElementsLocatedBy(by));
     }
 
     public WebElement findElement(By by) {
-        return wait.until(visibilityOfElementLocated(by));
+        return new WebDriverWait(driver, 15).until(visibilityOfElementLocated(by));
     }
 
     public Select getSelectObject(By by) {
