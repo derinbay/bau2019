@@ -7,9 +7,7 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by taylan.derinbay on 12.11.2019
  */
-public class LoginPage {
-
-    WebDriver driver;
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;

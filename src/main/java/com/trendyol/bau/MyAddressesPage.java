@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class MyAddressesPage {
-
-    WebDriver driver;
+public class MyAddressesPage extends BasePage {
 
     By addAddressButton = By.id("addButton");
 

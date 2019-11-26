@@ -7,9 +7,8 @@ import org.openqa.selenium.WebElement;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class ProductDetailPage {
+public class ProductDetailPage extends BasePage {
 
-    WebDriver driver;
 
     public ProductDetailPage(WebDriver driver) {
         this.driver = driver;

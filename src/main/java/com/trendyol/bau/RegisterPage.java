@@ -7,9 +7,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class RegisterPage {
-
-    WebDriver driver;
+public class RegisterPage extends BasePage {
 
     By firstName = By.id("firstName");
     By lastName = By.id("lastName");

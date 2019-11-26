@@ -9,14 +9,12 @@ import java.util.List;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class SearchResultPage {
-
-    WebDriver driver;
+public class SearchResultPage extends BasePage {
 
     public By resultText = By.cssSelector(".resultText > h1");
 
-    public SearchResultPage(WebDriver webDriver) {
-        this.driver = webDriver;
+    public SearchResultPage(WebDriver driver) {
+        this.driver = driver;
     }
 
     public String getResultText() {

@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class HomePage {
-
-    WebDriver driver;
+public class HomePage extends BasePage {
 
     public By searchBar = By.id("searchData");
     public By searchButton = By.className("searchBtn");

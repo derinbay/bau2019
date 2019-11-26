@@ -7,9 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 /**
  * Created by taylan.derinbay on 19.11.2019
  */
-public class AddAddressPage {
-
-    WebDriver driver;
+public class AddAddressPage extends BasePage {
 
     By title = By.id("title");
     By fullName = By.id("fullName");

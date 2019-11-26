@@ -1,108 +1,61 @@
 package com.trendyol.bau;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static io.github.bonigarcia.wdm.DriverManagerType.CHROME;
 import static org.testng.Assert.*;
 
 /**
  * Created by taylan.derinbay on 5.11.2019
  */
-public class SmokeTest {
-
-    WebDriver webDriver;
-
-    @BeforeMethod
-    public void startUp() {
-        WebDriverManager.getInstance(CHROME).setup();
-        webDriver = new ChromeDriver();
-        webDriver.get("https://www.n11.com");
-    }
+public class SmokeTest extends BaseTest {
 
     @Test
     public void openHomePage() throws InterruptedException {
         String titleToControl = "n11.com - Alışverişin Uğurlu Adresi";
 
         Thread.sleep(3000);
-        String titleFromPage = webDriver.getTitle();
+        String titleFromPage = driver.getTitle();
         assertEquals(titleToControl, titleFromPage);
     }
-
-    //"a".equals("a") ==> true
-    //object.equals(object) ==> true
-    //object1.equals(object2) ==> false
-    //"a".equals("b") ==> false
-
-    //"bau".contains("b") ==> true
-    //"dashjdkha".contains("hjd") ==> true
-    //"dashjdkha".contains("shd") ==> false
 
     @Test
     public void openLoginPage() {
         String titleToControl = "Giriş Yap - n11.com";
 
-        webDriver.get("https://www.n11.com/giris-yap");
-        String titleFromPage = webDriver.getTitle();
+        driver.get("https://www.n11.com/giris-yap");
+        String titleFromPage = driver.getTitle();
         assertEquals(titleFromPage, titleToControl);
     }
 
     @Test
     public void shouldLogin() {
-        webDriver.get("https://www.n11.com/giris-yap");
+        driver.get("https://www.n11.com/giris-yap");
 
-        LoginPage loginPage = new LoginPage(webDriver);
+        LoginPage loginPage = new LoginPage(driver);
         loginPage.login();
 
-        WebElement userName = webDriver.findElement(By.className("user"));
+        WebElement userName = driver.findElement(By.className("user"));
         String userNameFromPage = userName.getText();
         assertEquals(userNameFromPage, "test test");
 
-        boolean isSignInButtonVisible = isElementVisible(By.className("btnSignIn"));
+        HomePage homePage = new HomePage(driver);
+        boolean isSignInButtonVisible = homePage.isElementVisible(By.className("btnSignIn"));
         assertFalse(isSignInButtonVisible);
-
-        //cssSelector
-        //-------------
-        //  class ==> .class
-        //  id ==> #id
-        //  tagname ==> tagname
-        //
-
-        //class ==> .user
-        //class ==> .user
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        webDriver.quit();
-    }
-
-    public boolean isElementVisible(By by) {
-        try {
-            webDriver.findElement(by).isDisplayed();
-            return true;
-        } catch (Exception ex) {
-            return false;
-        }
     }
 
     @Test
     public void shouldSearch() {
-        WebElement searchBox = webDriver.findElement(By.id("searchData"));
-        WebElement searchButton = webDriver.findElement(By.className("iconSearch"));
+        WebElement searchBox = driver.findElement(By.id("searchData"));
+        WebElement searchButton = driver.findElement(By.className("iconSearch"));
 
         searchBox.sendKeys("samsung" + Keys.ENTER);
 
-        WebElement resultTextElement = webDriver.findElement(By.cssSelector(".resultText > h1"));
+        WebElement resultTextElement = driver.findElement(By.cssSelector(".resultText > h1"));
         String resultText = resultTextElement.getText();
         assertTrue(resultText.equals("Samsung"));
     }
@@ -110,7 +63,7 @@ public class SmokeTest {
     @Test
     public void shouldSearchAndAddToCart() throws InterruptedException {
         String keyword = "Samsung";
-        HomePage homePage = new HomePage(webDriver);
+        HomePage homePage = new HomePage(driver);
         SearchResultPage resultPage = homePage.search(keyword);
         Thread.sleep(3000);
 
@@ -133,7 +86,7 @@ public class SmokeTest {
          * 4- add an address
          *
          * */
-        HomePage homePage = new HomePage(webDriver);
+        HomePage homePage = new HomePage(driver);
         RegisterPage registerPage = homePage.goToRegister();
 
         homePage = registerPage.register();
@@ -147,6 +100,10 @@ public class SmokeTest {
         // refactor for duplication
     }
 }
+
+
+
+
 
 /**
  * id: #email   -> By.cssSelector("#email")
