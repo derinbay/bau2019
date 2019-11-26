@@ -1,5 +1,6 @@
 package com.trendyol.bau;
 
+import com.trendyol.bau.pages.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -7,6 +8,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.trendyol.bau.BuyerPool.aBuyer;
 import static org.testng.Assert.*;
 
 /**
@@ -37,7 +39,7 @@ public class SmokeTest extends BaseTest {
         driver.get("https://www.n11.com/giris-yap");
 
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login();
+        loginPage.login(aBuyer());
 
         WebElement userName = driver.findElement(By.className("user"));
         String userNameFromPage = userName.getText();

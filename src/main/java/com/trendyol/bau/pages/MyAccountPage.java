@@ -1,4 +1,4 @@
-package com.trendyol.bau;
+package com.trendyol.bau.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +15,7 @@ public class MyAccountPage extends BasePage {
     }
 
     public MyAddressesPage goToMyAddressesPage() {
-        driver.findElement(myAddresses).click();
+        clickTo(myAddresses);
         return new MyAddressesPage(driver);
     }
 }

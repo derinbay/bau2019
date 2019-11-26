@@ -1,4 +1,4 @@
-package com.trendyol.bau;
+package com.trendyol.bau.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -11,26 +11,24 @@ import java.util.List;
  */
 public class SearchResultPage extends BasePage {
 
-    public By resultText = By.cssSelector(".resultText > h1");
+    private By resultText = By.cssSelector(".resultText > h1");
 
     public SearchResultPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public String getResultText() {
-        return driver.findElement(resultText).getText();
+        return getText(resultText);
     }
 
     public List<WebElement> getProducts() {
-        List<WebElement> products = driver.findElements(By.cssSelector("#view li.column"));
-        return products;
+        return findElements(By.cssSelector("#view li.column"));
     }
 
     public ProductDetailPage getFirstProduct(List<WebElement> products) {
         WebElement firstProduct = products.get(0);
         WebElement firstProductToClick = firstProduct.findElement(By.tagName("img"));
-        firstProductToClick.click();
+        clickTo(firstProductToClick);
         return new ProductDetailPage(driver);
     }
-
 }
